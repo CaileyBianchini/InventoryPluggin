@@ -19,4 +19,14 @@ public:
 
 	APickUp();
 
+
+	virtual void Interact_Implementation() override;
+
+	UPROPERTY(EditAnywhere, Category = "Pickup Properties")
+
+	UPROPERTY(EditAnywhere, Category = "PickUp Properties")
+	int32 Value;
+
+	//This item is called when Item is picked up
+	void OnPickedUp();
 };

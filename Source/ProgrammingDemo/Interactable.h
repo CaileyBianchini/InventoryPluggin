@@ -25,7 +25,7 @@ public:
 	//Functions for making items interactable
 	UFUNCTION(BlueprintNativeEvent)
 	void Interact();
-	void Interact_Implementation();
+	virtual void Interact_Implementation();
 
 	//All items will presumbaly have a static mesh when picked up
 	UPROPERTY(EditAnywhere, Category = "Item Properties")
