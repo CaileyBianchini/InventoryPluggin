@@ -3,6 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Interactable.h"
+#include "PickUp.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
@@ -41,6 +43,22 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void MoveRight(float AxisValue);
 
+public:
+	//The players reach
+	float Reach;
+
+//THIS IS APART OF THE EXAMPLE//
+private:
+	//This toggles the inventory
+	void ToggleInventory();
+
+	//interacts with the current interactable if there is an item to do so
+	void Interact();
+
+	//checks for interactable items directly in front of the player using a linetrace - called per tick
+	void CheckForInteractables();
+
+//THIS IS THE END OF THE EXAMPLE//
 private:
 	bool bIsMovingX = false;
 	bool bIsMovingY = false;

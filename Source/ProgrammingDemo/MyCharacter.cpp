@@ -20,13 +20,15 @@ AMyCharacter::AMyCharacter()
 
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	Camera->SetupAttachment(SpringArm);
+
+	//FOR EXAMPLE//
+	Reach = 250.0f;
 }
 
 // Called when the game starts or when spawned
 void AMyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
@@ -34,6 +36,7 @@ void AMyCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	CheckForInteractables();
 }
 
 // Called to bind functionality to input
@@ -61,5 +64,33 @@ void AMyCharacter::MoveRight(float AxisValue)
 
 	bIsMovingY = AxisValue != 0.0f;
 	bUseControllerRotationYaw = bIsMovingX || bIsMovingY;
+}
+
+//THIS IS APART OF THE EXAMPLE//
+
+void AMyCharacter::ToggleInventory()
+{
+}
+
+void AMyCharacter::Interact()
+{
+}
+
+void AMyCharacter::CheckForInteractables()
+{
+	//to linetrace, got the start and end traces
+	FVector StartTrace = Camera->GetComponentLocation(); //Camera is whatever the name of the camera your using for your player
+	FVector EndTrace = (Camera->GetForwardVector * Reach)+ StartTrace;
+
+	//Declare a hitresult to store the raycast to hit in
+	FHitResult HitResult;
+
+	//Initializes the query params - Ignore the actor
+	FCollisionQueryParams collisionQP;
+
+	collisionQP.AddIgnoredActor(this);
+
+	//cast the lime trace
+	GetWorld()->LineTraceSingleByChannel(HitResult, StartTrace, EndTrace, ECC_WorldDynamic, collisionQP);
 }
 
