@@ -19,11 +19,29 @@ public:
 
 	APickUp();
 
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
+public:
 
 	virtual void Interact_Implementation() override;
 
-	UPROPERTY(EditAnywhere, Category = "Pickup Properties")
+	UFUNCTION(BlueprintInNativeEvent)
+	void Use();
+	virtual void Use_Implementation(); 
 
+public:
+
+	//this is what will give the item its thumbnail
+	UPROPERTY(EditAnywhere, Category = "Pickup Properties")
+	UTexture2D* PickUpThumbnail;
+
+	//this is what will name the item
+	UPROPERTY(EditAnywhere, Category = "Pickup Properties")
+	FString ItemName;
+
+	//this will give the item a stack number 
 	UPROPERTY(EditAnywhere, Category = "PickUp Properties")
 	int32 Value;
 
