@@ -33,8 +33,14 @@ void APickUp::InteractableToInventory()
 	OnPickedUp();
 }
 
+
 void APickUp::Use()
 {
+}
+
+void APickUp::UseImp()
+{
+	GLog->Log("Use() from base PickUp class. YOU SHOULD NOT SEE THIS \n");
 }
 
 //

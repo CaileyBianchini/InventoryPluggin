@@ -2,6 +2,7 @@
 
 
 #include "MyCharacter.h"
+#include "PickUp.h"
 
 // Sets default values
 AMyCharacter::AMyCharacter()
@@ -70,10 +71,17 @@ void AMyCharacter::MoveRight(float AxisValue)
 
 void AMyCharacter::ToggleInventory()
 {
+	//TO DO: CODE THAT OPEN INVENTORY
 }
 
 void AMyCharacter::Interact()
 {
+
+	if (currentInteractable != nullptr) 
+	{
+		//This might be turned into a node to get the PickUp version instead of Interactable version//
+		currentInteractable->InteractableInventoryImp();
+	}
 }
 
 void AMyCharacter::CheckForInteractables()
@@ -102,6 +110,10 @@ void AMyCharacter::CheckForInteractables()
 		currentInteractable = nullptr;
 		return;
 	}
-
+	else
+	{
+		currentInteractable = PotentialInteractable;
+		HelpText = PotentialInteractable->ItemHelpText;
+	}
 }
 

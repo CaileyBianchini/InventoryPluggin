@@ -23,6 +23,11 @@ void AInteractable::Interact()
 
 }
 
+void AInteractable::InteractableInventoryImp()
+{
+	GLog->Log("Interactable base class: Interact() Oop, You shouldn't be seeing this!");
+}
+
 //void AInteractable::InteractableToInventory()
 //{
 //	GLog->Log("Interactable base class: Interact() Oop, You shouldn't be seeing this!");

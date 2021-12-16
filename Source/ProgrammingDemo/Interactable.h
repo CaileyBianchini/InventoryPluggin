@@ -26,6 +26,9 @@ public:
 	virtual void Interact();
 	/*virtual void InteractableToInventory();*/
 
+	UFUNCTION(BlueprintCallable)
+	virtual void InteractableInventoryImp();
+
 	//All items will presumbaly have a static mesh when picked up
 	UPROPERTY(EditAnywhere, Category = "Item Properties")
 	class UStaticMeshComponent* ItemMesh;

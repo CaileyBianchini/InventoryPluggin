@@ -25,11 +25,15 @@ protected:
 
 public:
 
-	void InteractableToInventory();
+	UFUNCTION(BlueprintCallable, EditAnywhere)
+	virtual void InteractableToInventory();
 
 	UFUNCTION(BlueprintCallable)
 	void Use();
 	/*virtual void UseOfInteractable(); */
+
+	UFUNCTION(BlueprintCallable)
+	virtual void UseImp();
 
 public:
 
