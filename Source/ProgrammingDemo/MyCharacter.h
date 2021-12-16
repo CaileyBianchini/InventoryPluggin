@@ -43,9 +43,6 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void MoveRight(float AxisValue);
 
-public:
-	//The players reach
-	float Reach;
 
 //THIS IS APART OF THE EXAMPLE//
 private:
@@ -57,6 +54,15 @@ private:
 
 	//checks for interactable items directly in front of the player using a linetrace - called per tick
 	void CheckForInteractables();
+
+public:
+	//The players reach
+	float Reach;
+
+	FString HelpText;
+
+	//the interactable the player is looking at
+	AInteractable* currentInteractable;
 
 //THIS IS THE END OF THE EXAMPLE//
 private:

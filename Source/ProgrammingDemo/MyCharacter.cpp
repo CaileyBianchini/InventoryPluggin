@@ -80,7 +80,7 @@ void AMyCharacter::CheckForInteractables()
 {
 	//to linetrace, got the start and end traces
 	FVector StartTrace = Camera->GetComponentLocation(); //Camera is whatever the name of the camera your using for your player
-	FVector EndTrace = (Camera->GetForwardVector * Reach)+ StartTrace;
+	FVector EndTrace = (Camera->GetForwardVector() * Reach) + StartTrace;
 
 	//Declare a hitresult to store the raycast to hit in
 	FHitResult HitResult;
@@ -92,5 +92,16 @@ void AMyCharacter::CheckForInteractables()
 
 	//cast the lime trace
 	GetWorld()->LineTraceSingleByChannel(HitResult, StartTrace, EndTrace, ECC_WorldDynamic, collisionQP);
+
+	AInteractable* PotentialInteractable = Cast<AInteractable>(HitResult.GetActor());
+
+
+	if (PotentialInteractable == NULL)
+	{
+		HelpText = FString("");
+		currentInteractable = nullptr;
+		return;
+	}
+
 }
 

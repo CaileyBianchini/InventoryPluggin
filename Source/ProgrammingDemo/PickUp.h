@@ -25,11 +25,11 @@ protected:
 
 public:
 
-	virtual void Interact_Implementation() override;
+	void InteractableToInventory();
 
-	UFUNCTION(BlueprintInNativeEvent)
+	UFUNCTION(BlueprintCallable)
 	void Use();
-	virtual void Use_Implementation(); 
+	/*virtual void UseOfInteractable(); */
 
 public:
 

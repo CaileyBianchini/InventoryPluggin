@@ -1,10 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+#include "PickUp.h"
 #include "ProgrammingDemo.h"
 #include "Components/StaticMeshComponent.h"
 #include "MyCharacter.h" //this is the class that deals with player input movements
 #include "Kismet/GameplayStatics.h"//this is added for UGameplayStatics
-#include "PickUp.h"
+
 
 APickUp::APickUp()
 {
@@ -19,10 +20,11 @@ APickUp::APickUp()
 
 void APickUp::BeginPlay()
 {
-	ItemHelpText = FString::Printf(TEXT("%s: Press E to pick up."), ItemName);
+	/*ItemHelpText = FString::Printf(TEXT("%s: Press E to pick up."), ItemName);*/
+	ItemHelpText = FString("%s: Press E to pick up " + ItemName);
 }
 
-void APickUp::Interact_Implementation()
+void APickUp::InteractableToInventory()
 {
 	AMyCharacter* Charcter = Cast<AMyCharacter>(UGameplayStatics::GetPlayerCharacter(this, 0)); // AMYCHARACTER is [A] + [the name of the script you use for player movement]
 
@@ -31,11 +33,16 @@ void APickUp::Interact_Implementation()
 	OnPickedUp();
 }
 
-//this is for whatever each item will do on its own
-void APickUp::Use_Implementation()
+void APickUp::Use()
 {
-	GLog->Log("Use() from base PickUp class. YOU SHOULD NOT SEE THIS \n");
 }
+
+//
+////this is for whatever each item will do on its own
+//void APickUp::UseOfInteractable()
+//{
+//	GLog->Log("Use() from base PickUp class. YOU SHOULD NOT SEE THIS \n");
+//}
 
 void APickUp::OnPickedUp()
 {
