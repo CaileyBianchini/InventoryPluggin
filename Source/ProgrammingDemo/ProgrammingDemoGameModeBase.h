@@ -29,6 +29,7 @@ public:
 	//getter for HUD state
 	uint8 GetHUDEState();
 
+	UFUNCTION(BlueprintCallable, Category = "HUD Function")
 	//setter for HUD state, applied new state and then calls ApplyHUDChanges()
 	void ChangeHUDState(uint8 NewState);
 };
