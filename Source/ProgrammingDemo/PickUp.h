@@ -25,7 +25,7 @@ protected:
 
 public:
 
-	UFUNCTION(BlueprintCallable, EditAnywhere)
+	UFUNCTION(BlueprintCallable)
 	virtual void InteractableToInventory();
 
 	UFUNCTION(BlueprintCallable)
