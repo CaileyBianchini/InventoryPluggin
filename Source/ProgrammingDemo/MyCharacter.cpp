@@ -72,7 +72,7 @@ void AMyCharacter::MoveRight(float AxisValue)
 
 void AMyCharacter::ToggleInventory()
 {
-	//TO DO: CODE THAT OPEN INVENTORY
+	//TO DO: CODE THAT OPEN INVENTORY and add the node to MYCharacter3_Blueprint and add it to InputAction OpenCloseInventory
 }
 
 void AMyCharacter::Interact()
