@@ -3,6 +3,7 @@
 
 #include "MyCharacter.h"
 #include "PickUp.h"
+#include "Inventory.h"
 
 // Sets default values
 AMyCharacter::AMyCharacter()
