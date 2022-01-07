@@ -27,8 +27,11 @@ private:
 	UCameraComponent* Camera;
 
 protected:
+
+	// ALSO APART OF THE EXAMPLE	
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	//END OF EXAMPLE IN THIS BIT
 
 public:	
 	// Called every frame
@@ -45,9 +48,35 @@ public:
 
 
 //THIS IS APART OF THE EXAMPLE//
-private:
+
+public:
+
 	//This toggles the inventory
-	void ToggleInventory();
+	UFUNCTION(BlueprintCallable)
+	void InventoryToggleOpenClose();
+
+	//help text to help player
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "HUD")
+	FString HelpText;
+
+	//Adds an item to the inventory 
+	UFUNCTION(BlueprintPure, Category = "Inventory Functions")
+	bool AddItemToInventory(APickUp* Item);
+
+	//Gets the thumbnail for a given inventory slot
+	UFUNCTION(BlueprintPure, Category = "Inventory Functions")
+	UTexture2D* GetThumbnailAtInventorySlot(int32 Slot);
+
+	//Gets the item name for a given inventory slot
+	UFUNCTION(BlueprintPure, Category = "Inventory Functions")
+	FString GivenNameAtInventorySlot(int32 Slot);
+
+	//uses the item at a given inventory slot
+	UFUNCTION(BlueprintCallable, Category = "Inventory Functions")
+	void UseItemAtInventorySlot(int32 Slot);
+
+private:
+	
 
 	//interacts with the current interactable if there is an item to do so
 	void Interact();
@@ -55,14 +84,17 @@ private:
 	//checks for interactable items directly in front of the player using a linetrace - called per tick
 	void CheckForInteractables();
 
+
 public:
 	//The players reach
 	float Reach;
 
-	FString HelpText;
-
 	//the interactable the player is looking at
 	AInteractable* currentInteractable;
+
+	//the players inventory, represented as a tarray of a pickup objects
+	UPROPERTY(EditAnywhere)
+	TArray<APickUp*> Inventory;
 
 //THIS IS THE END OF THE EXAMPLE//
 private:

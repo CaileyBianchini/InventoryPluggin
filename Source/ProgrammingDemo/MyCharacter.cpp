@@ -31,6 +31,11 @@ AMyCharacter::AMyCharacter()
 void AMyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+
+	//This sets the limit of the inventory, can customize
+	Inventory.SetNum(5);
+
+	currentInteractable = nullptr;
 }
 
 // Called every frame
@@ -70,9 +75,59 @@ void AMyCharacter::MoveRight(float AxisValue)
 
 //THIS IS APART OF THE EXAMPLE//
 
-void AMyCharacter::ToggleInventory()
+void AMyCharacter::InventoryToggleOpenClose()
 {
 	//TO DO: CODE THAT OPEN INVENTORY and add the node to MYCharacter3_Blueprint and add it to InputAction OpenCloseInventory
+}
+
+bool AMyCharacter::AddItemToInventory(APickUp* Item)
+{
+	if (Item != NULL)
+	{
+		const int32 AvailableSlot = Inventory.Find(nullptr); //Find first slot with a nullptr in it
+
+		if (AvailableSlot != INDEX_NONE)
+		{
+			Inventory[AvailableSlot] = Item;
+			return true;
+		}
+		else
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("Inventory full!"));
+			return false;
+		}
+
+	}
+	else return false;
+}
+
+UTexture2D* AMyCharacter::GetThumbnailAtInventorySlot(int32 Slot)
+{
+	if (Inventory[Slot] != NULL)
+	{
+		return Inventory[Slot]->PickUpThumbnail;
+	}
+	else return nullptr;
+}
+
+FString AMyCharacter::GivenNameAtInventorySlot(int32 Slot)
+{
+	if (Inventory[Slot] != NULL)
+	{
+		return Inventory[Slot]->ItemName;
+	}
+	return FString("Empty");
+}
+
+void AMyCharacter::UseItemAtInventorySlot(int32 Slot)
+{
+
+	if (Inventory[Slot] != NULL)
+	{
+		Inventory[Slot]->UseImp();
+		Inventory[Slot] = NULL; //deletes item from inventory - can set up a system of multi uses
+	}
+
 }
 
 void AMyCharacter::Interact()
