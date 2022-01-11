@@ -37,8 +37,10 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	//PART OF EXAMPLE
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	//PART OF EXAMPLE END
 
 	UFUNCTION(BlueprintCallable)
 	void MoveForward(float AxisValue);
@@ -50,6 +52,7 @@ public:
 //THIS IS APART OF THE EXAMPLE//
 
 public:
+
 
 	//This toggles the inventory
 	UFUNCTION(BlueprintCallable)

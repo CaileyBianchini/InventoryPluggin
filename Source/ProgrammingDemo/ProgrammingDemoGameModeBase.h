@@ -23,7 +23,7 @@ public:
 	enum ENUMState : uint8
 	{
 		HS_Ingame,
-		HS_Inventory,		//after this was supposed to be HS_Shop_General
+		HS_Inventory,	
 		HS_Item
 	};
 	

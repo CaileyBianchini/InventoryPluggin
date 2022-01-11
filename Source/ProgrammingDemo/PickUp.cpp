@@ -36,7 +36,6 @@ void APickUp::InteractableToInventory()
 
 }
 
-
 void APickUp::Use()
 {
 }
@@ -45,13 +44,6 @@ void APickUp::UseImp()
 {
 	GLog->Log("Use() from base PickUp class. YOU SHOULD NOT SEE THIS \n");
 }
-
-//
-////this is for whatever each item will do on its own
-//void APickUp::UseOfInteractable()
-//{
-//	GLog->Log("Use() from base PickUp class. YOU SHOULD NOT SEE THIS \n");
-//}
 
 void APickUp::OnPickedUp()
 {

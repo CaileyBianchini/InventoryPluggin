@@ -47,12 +47,16 @@ void AMyCharacter::Tick(float DeltaTime)
 	CheckForInteractables();
 }
 
-// Called to bind functionality to input
 void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	check(PlayerInputComponent);
+
+	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &AMyCharacter::Interact);
+
+	PlayerInputComponent->BindAction("InventoryToggleOpenClose", IE_Pressed, this, &AMyCharacter::InventoryToggleOpenClose);
 
 }
+
 
 void AMyCharacter::MoveForward(float AxisValue)
 {
