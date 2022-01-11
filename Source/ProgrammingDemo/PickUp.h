@@ -38,15 +38,15 @@ public:
 public:
 
 	//this is what will give the item its thumbnail
-	UPROPERTY(EditAnywhere, Category = "Pickup Properties")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Pickup Properties")
 	UTexture2D* PickUpThumbnail;
 
 	//this is what will name the item
-	UPROPERTY(EditAnywhere, Category = "Pickup Properties")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Pickup Properties")
 	FString ItemName;
 
 	//this will give the item a stack number 
-	UPROPERTY(EditAnywhere, Category = "PickUp Properties")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "PickUp Properties")
 	int32 Value;
 
 	//This item is called when Item is picked up

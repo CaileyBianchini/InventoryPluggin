@@ -60,7 +60,7 @@ public:
 	FString HelpText;
 
 	//Adds an item to the inventory 
-	UFUNCTION(BlueprintPure, Category = "Inventory Functions")
+	UFUNCTION(BlueprintCallable, Category = "Inventory Functions")
 	bool AddItemToInventory(APickUp* Item);
 
 	//Gets the thumbnail for a given inventory slot

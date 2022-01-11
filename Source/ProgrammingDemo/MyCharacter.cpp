@@ -4,6 +4,7 @@
 #include "MyCharacter.h"
 #include "PickUp.h"
 #include "Inventory.h"
+#include "ProgrammingDemoGameModeBase.h"
 
 // Sets default values
 AMyCharacter::AMyCharacter()
@@ -77,7 +78,19 @@ void AMyCharacter::MoveRight(float AxisValue)
 
 void AMyCharacter::InventoryToggleOpenClose()
 {
-	//TO DO: CODE THAT OPEN INVENTORY and add the node to MYCharacter3_Blueprint and add it to InputAction OpenCloseInventory
+	//checks players hud state, if open it will close, otherwise opens inventory
+
+	AProgrammingDemoGameModeBase* GameMode = Cast<AProgrammingDemoGameModeBase>(GetWorld()->GetAuthGameMode());
+
+	if (GameMode->GetHUDEState() == GameMode->HS_Ingame)
+	{
+		GameMode->ChangeHUDState(GameMode->HS_Inventory);
+	}
+	else
+	{
+		GameMode->ChangeHUDState(GameMode->HS_Ingame);
+	}
+
 }
 
 bool AMyCharacter::AddItemToInventory(APickUp* Item)

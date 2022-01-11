@@ -28,9 +28,12 @@ void APickUp::InteractableToInventory()
 {
 	AMyCharacter* Charcter = Cast<AMyCharacter>(UGameplayStatics::GetPlayerCharacter(this, 0)); // AMYCHARACTER is [A] + [the name of the script you use for player movement]
 
-	//TO DO: Place code that places item into character inventory. Inventory currently does not exist.
+	if (Charcter->AddItemToInventory(this))
+	{
+		OnPickedUp();
 
-	OnPickedUp();
+	}
+
 }
 
 
