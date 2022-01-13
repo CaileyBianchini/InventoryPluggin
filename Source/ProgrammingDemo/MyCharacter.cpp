@@ -25,7 +25,7 @@ AMyCharacter::AMyCharacter()
 	Camera->SetupAttachment(SpringArm);
 
 	//FOR EXAMPLE//
-	Reach = 250.0f;
+	Reach = 300.0f;
 }
 
 // Called when the game starts or when spawned
@@ -34,7 +34,7 @@ void AMyCharacter::BeginPlay()
 	Super::BeginPlay();
 
 	//This sets the limit of the inventory, can customize
-	Inventory.SetNum(5);
+	Inventory.SetNum(8);
 
 	currentInteractable = nullptr;
 }
@@ -71,12 +71,27 @@ void AMyCharacter::MoveRight(float AxisValue)
 
 //THIS IS APART OF THE EXAMPLE//
 
+void AMyCharacter::SetInput()
+{
+	InputComponent->BindAction("InteractItem", IE_Pressed, this, &AMyCharacter::Interact);
+}
 
 bool AMyCharacter::AddItemToInventory(APickUp* Item)
 {
 	if (Item != NULL)
 	{
-		
+		const int32 AvailableSlot = Inventory.Find(nullptr); //Find first slot with a nullptr in it
+
+		if (AvailableSlot != INDEX_NONE)
+		{
+			Inventory[AvailableSlot] = Item;
+			return true;
+		}
+		else
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("Inventory full!"));
+			return false;
+		}
 
 	}
 	else return false;
@@ -116,7 +131,6 @@ void AMyCharacter::Interact()
 
 	if (currentInteractable != nullptr) 
 	{
-		//This might be turned into a node to get the PickUp version instead of Interactable version//
 		currentInteractable->InteractableInventoryImp();
 	}
 }

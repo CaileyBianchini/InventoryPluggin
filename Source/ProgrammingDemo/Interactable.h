@@ -30,7 +30,7 @@ public:
 	virtual void InteractableInventoryImp();
 
 	//All items will presumbaly have a static mesh when picked up
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Item Properties")
+	UPROPERTY(EditAnywhere, Category = "Item Properties")
 	class UStaticMeshComponent* ItemMesh;
 
 	//All items will presumbaly have a help text 
