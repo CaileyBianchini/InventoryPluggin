@@ -132,6 +132,7 @@ void AMyCharacter::Interact()
 	if (currentInteractable != nullptr) 
 	{
 		currentInteractable->InteractableInventoryImp();
+		AddItemToInventory(item);
 	}
 }
 

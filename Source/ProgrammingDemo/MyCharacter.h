@@ -73,6 +73,7 @@ private:
 	void SetInput();
 
 	//interacts with the current interactable if there is an item to do so
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	void Interact();
 
 	//checks for interactable items directly in front of the player using a linetrace - called per tick
@@ -85,6 +86,8 @@ public:
 
 	//the interactable the player is looking at
 	AInteractable* currentInteractable;
+
+	APickUp* item;
 
 	//the players inventory, represented as a tarray of a pickup objects
 	UPROPERTY(EditAnywhere)
