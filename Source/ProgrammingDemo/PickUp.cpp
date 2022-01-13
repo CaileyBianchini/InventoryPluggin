@@ -38,6 +38,8 @@ void APickUp::InteractableToInventory()
 
 void APickUp::Use()
 {
+	//temp use
+	delete this;
 }
 
 void APickUp::UseImp()

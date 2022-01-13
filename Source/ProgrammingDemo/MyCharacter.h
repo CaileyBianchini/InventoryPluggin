@@ -48,11 +48,6 @@ public:
 
 public:
 
-
-	//This toggles the inventory
-	UFUNCTION(BlueprintCallable)
-	void InventoryToggleOpenClose();
-
 	//help text to help player
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "HUD")
 	FString HelpText;

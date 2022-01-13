@@ -71,39 +71,12 @@ void AMyCharacter::MoveRight(float AxisValue)
 
 //THIS IS APART OF THE EXAMPLE//
 
-void AMyCharacter::InventoryToggleOpenClose()
-{
-	//checks players hud state, if open it will close, otherwise opens inventory
-
-	AProgrammingDemoGameModeBase* GameMode = Cast<AProgrammingDemoGameModeBase>(GetWorld()->GetAuthGameMode());
-
-	if (GameMode->GetHUDEState() == GameMode->HS_Ingame)
-	{
-		GameMode->ChangeHUDState(GameMode->HS_Inventory);
-	}
-	else
-	{
-		GameMode->ChangeHUDState(GameMode->HS_Ingame);
-	}
-
-}
 
 bool AMyCharacter::AddItemToInventory(APickUp* Item)
 {
 	if (Item != NULL)
 	{
-		const int32 AvailableSlot = Inventory.Find(nullptr); //Find first slot with a nullptr in it
-
-		if (AvailableSlot != INDEX_NONE)
-		{
-			Inventory[AvailableSlot] = Item;
-			return true;
-		}
-		else
-		{
-			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("Inventory full!"));
-			return false;
-		}
+		
 
 	}
 	else return false;
