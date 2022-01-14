@@ -26,11 +26,8 @@ protected:
 public:
 
 	UFUNCTION(BlueprintCallable)
-	virtual void InteractableToInventory();
-
-	UFUNCTION(BlueprintCallable)
 	void Use();
-	/*virtual void UseOfInteractable(); */
+	virtual void InteractableInventoryImp() override;
 
 	UFUNCTION(BlueprintCallable)
 	virtual void UseImp();

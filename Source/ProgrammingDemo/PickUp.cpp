@@ -24,21 +24,20 @@ void APickUp::BeginPlay()
 	ItemHelpText = FString("%s: Press E to pick up " + ItemName);
 }
 
-void APickUp::InteractableToInventory()
+void APickUp::Use()
 {
-	AMyCharacter* Charcter = Cast<AMyCharacter>(UGameplayStatics::GetPlayerCharacter(this, 0)); // AMYCHARACTER is [A] + [the name of the script you use for player movement]
+	//you can put whtever you want right here
+}
 
-	if (Charcter->AddItemToInventory(this))
+void APickUp::InteractableInventoryImp()
+{
+	AMyCharacter* Character = Cast<AMyCharacter>(UGameplayStatics::GetPlayerCharacter(this, 0));
+	
+	if (Character->AddItemToInventory(this))
 	{
 		OnPickedUp();
 
 	}
-
-}
-
-void APickUp::Use()
-{
-	//you can put whtever you want right here
 }
 
 void APickUp::UseImp()
@@ -48,7 +47,7 @@ void APickUp::UseImp()
 
 void APickUp::OnPickedUp()
 {
-	ItemMesh->SetVisibility(false); //TO DO: replace with DestroyComponent()
+	ItemMesh->SetVisibility(false); //replace with DestroyComponent() optional
 	ItemMesh->SetSimulatePhysics(false);
 	ItemMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 }

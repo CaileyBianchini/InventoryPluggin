@@ -72,10 +72,11 @@ private:
 	
 	void SetInput();
 
+public:
 	//interacts with the current interactable if there is an item to do so
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	void Interact();
 
+private:
 	//checks for interactable items directly in front of the player using a linetrace - called per tick
 	void CheckForInteractables();
 
@@ -85,7 +86,7 @@ public:
 	float Reach;
 
 	//the interactable the player is looking at
-	AInteractable* currentInteractable;
+	APickUp* currentInteractable;
 
 	APickUp* item;
 

@@ -4,7 +4,7 @@
 #include "MyCharacter.h"
 #include "PickUp.h"
 #include "Inventory.h"
-#include "ProgrammingDemoGameModeBase.h"
+//#include "ProgrammingDemoGameModeBase.h"
 
 // Sets default values
 AMyCharacter::AMyCharacter()
@@ -25,7 +25,9 @@ AMyCharacter::AMyCharacter()
 	Camera->SetupAttachment(SpringArm);
 
 	//FOR EXAMPLE//
-	Reach = 300.0f;
+	Reach = 5000.0f;
+
+	SetInput();
 }
 
 // Called when the game starts or when spawned
@@ -46,7 +48,6 @@ void AMyCharacter::Tick(float DeltaTime)
 
 	CheckForInteractables();
 }
-
 
 
 void AMyCharacter::MoveForward(float AxisValue)
@@ -132,7 +133,6 @@ void AMyCharacter::Interact()
 	if (currentInteractable != nullptr) 
 	{
 		currentInteractable->InteractableInventoryImp();
-		AddItemToInventory(item);
 	}
 }
 
@@ -153,7 +153,7 @@ void AMyCharacter::CheckForInteractables()
 	//cast the lime trace
 	GetWorld()->LineTraceSingleByChannel(HitResult, StartTrace, EndTrace, ECC_WorldDynamic, collisionQP);
 
-	AInteractable* PotentialInteractable = Cast<AInteractable>(HitResult.GetActor());
+	APickUp* PotentialInteractable = Cast<APickUp>(HitResult.GetActor());
 
 
 	if (PotentialInteractable == NULL)

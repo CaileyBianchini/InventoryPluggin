@@ -24,7 +24,6 @@ public:
 	//Functions for making items interactable
 	UFUNCTION(BlueprintCallable)
 	virtual void Interact();
-	/*virtual void InteractableToInventory();*/
 
 	UFUNCTION(BlueprintCallable)
 	virtual void InteractableInventoryImp();
