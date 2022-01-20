@@ -26,8 +26,6 @@ AMyCharacter::AMyCharacter()
 
 	//FOR EXAMPLE//
 	Reach = 5000.0f;
-
-	SetInput();
 }
 
 // Called when the game starts or when spawned
@@ -39,6 +37,8 @@ void AMyCharacter::BeginPlay()
 	Inventory.SetNum(8);
 
 	currentInteractable = nullptr;
+
+	SetInput();
 }
 
 // Called every frame

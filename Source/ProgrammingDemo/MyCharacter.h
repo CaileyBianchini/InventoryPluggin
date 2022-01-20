@@ -74,6 +74,7 @@ private:
 
 public:
 	//interacts with the current interactable if there is an item to do so
+	UFUNCTION(BlueprintCallable)
 	void Interact();
 
 private:
