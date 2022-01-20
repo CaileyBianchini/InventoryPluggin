@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Interactable.h"
 #include "PickUp.h"
+#include "GameFramework/InputSettings.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
@@ -72,7 +73,11 @@ private:
 	
 	void SetInput();
 
+
 public:
+
+	virtual void SetupPlayerInputComponent(UInputComponent* Input) override;
+
 	//interacts with the current interactable if there is an item to do so
 	UFUNCTION(BlueprintCallable)
 	void Interact();

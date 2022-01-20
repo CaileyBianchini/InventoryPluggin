@@ -47,7 +47,8 @@ void APickUp::UseImp()
 
 void APickUp::OnPickedUp()
 {
-	ItemMesh->SetVisibility(false); //replace with DestroyComponent() optional
+	ItemMesh->SetVisibility(true); //replace with DestroyComponent() optional
 	ItemMesh->SetSimulatePhysics(false);
 	ItemMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	Destroy();
 }

@@ -25,7 +25,7 @@ AMyCharacter::AMyCharacter()
 	Camera->SetupAttachment(SpringArm);
 
 	//FOR EXAMPLE//
-	Reach = 5000.0f;
+	Reach = 500.000f;
 }
 
 // Called when the game starts or when spawned
@@ -37,8 +37,6 @@ void AMyCharacter::BeginPlay()
 	Inventory.SetNum(8);
 
 	currentInteractable = nullptr;
-
-	SetInput();
 }
 
 // Called every frame
@@ -74,7 +72,16 @@ void AMyCharacter::MoveRight(float AxisValue)
 
 void AMyCharacter::SetInput()
 {
+	check(InputComponent);
+
 	InputComponent->BindAction("InteractItem", IE_Pressed, this, &AMyCharacter::Interact);
+}
+
+void AMyCharacter::SetupPlayerInputComponent(UInputComponent* Input)
+{
+	check(Input);
+
+	Input->BindAction("InteractItem", IE_Pressed, this, &AMyCharacter::Interact);
 }
 
 bool AMyCharacter::AddItemToInventory(APickUp* Item)
@@ -129,10 +136,20 @@ void AMyCharacter::UseItemAtInventorySlot(int32 Slot)
 
 void AMyCharacter::Interact()
 {
+	//to test
+	GLog->Log("Got to Interact\n");
 
 	if (currentInteractable != nullptr) 
 	{
 		currentInteractable->InteractableInventoryImp();
+		//to test
+		GLog->Log("passed the currentInteractable check\n");
+		
+	}
+	else
+	{
+		//to test
+		GLog->Log("did not pass the currentInteractable check\n");
 	}
 }
 
@@ -140,7 +157,7 @@ void AMyCharacter::CheckForInteractables()
 {
 	//to linetrace, got the start and end traces
 	FVector StartTrace = Camera->GetComponentLocation(); //Camera is whatever the name of the camera your using for your player
-	FVector EndTrace = (Camera->GetForwardVector() * Reach) + StartTrace;
+	FVector EndTrace = StartTrace + Camera->GetForwardVector() * Reach;
 
 	//Declare a hitresult to store the raycast to hit in
 	FHitResult HitResult;
@@ -151,21 +168,44 @@ void AMyCharacter::CheckForInteractables()
 	collisionQP.AddIgnoredActor(this);
 
 	//cast the lime trace
-	GetWorld()->LineTraceSingleByChannel(HitResult, StartTrace, EndTrace, ECC_WorldDynamic, collisionQP);
-
-	APickUp* PotentialInteractable = Cast<APickUp>(HitResult.GetActor());
-
-
-	if (PotentialInteractable == NULL)
+	if (GetWorld()->LineTraceSingleByChannel(HitResult, StartTrace, EndTrace, ECC_Visibility, collisionQP))
 	{
-		HelpText = FString("");
-		currentInteractable = nullptr;
+		if (APickUp* PotentialInteractable = Cast<APickUp>(HitResult.GetActor()))
+		{
+			currentInteractable = PotentialInteractable;
+			HelpText = PotentialInteractable->ItemHelpText;
+			//to test
+			GLog->Log("potential interactable is there\n");
+				return;
+		}
+		GLog->Log("potential interactable is null\n");
 		return;
 	}
-	else
+
+	if (GetWorld() == NULL)
 	{
-		currentInteractable = PotentialInteractable;
-		HelpText = PotentialInteractable->ItemHelpText;
+		GLog->Log("there is no world\n");
+		return;
 	}
+
+	GLog->Log("didnt even get to GetWorld()\n");
+	return;
+
+
+	//if (PotentialInteractable == nullptr)
+	//{
+	//	HelpText = FString("");
+	//	currentInteractable = nullptr;
+	//	//to test
+	//	GLog->Log("potential interactable is null\n");
+	//	return;
+	//}
+	//else
+	//{
+	//	currentInteractable = PotentialInteractable;
+	//	HelpText = PotentialInteractable->ItemHelpText;
+	//	//to test
+	//	GLog->Log("potential interactable is there\n");
+	//}
 }
 
