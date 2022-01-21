@@ -93,6 +93,7 @@ bool AMyCharacter::AddItemToInventory(APickUp* Item)
 		if (AvailableSlot != INDEX_NONE)
 		{
 			Inventory[AvailableSlot] = Item;
+			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("Item added"));
 			return true;
 		}
 		else
@@ -144,7 +145,6 @@ void AMyCharacter::Interact()
 		currentInteractable->InteractableInventoryImp();
 		//to test
 		GLog->Log("passed the currentInteractable check\n");
-		
 	}
 	else
 	{

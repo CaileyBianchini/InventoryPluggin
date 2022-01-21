@@ -36,7 +36,7 @@ void APickUp::InteractableInventoryImp()
 	if (Character->AddItemToInventory(this))
 	{
 		OnPickedUp();
-
+		GLog->Log("character was picked up \n");
 	}
 }
 
@@ -47,8 +47,7 @@ void APickUp::UseImp()
 
 void APickUp::OnPickedUp()
 {
-	ItemMesh->SetVisibility(true); //replace with DestroyComponent() optional
+	ItemMesh->SetVisibility(false); //replace with DestroyComponent() optional
 	ItemMesh->SetSimulatePhysics(false);
 	ItemMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-	Destroy();
 }

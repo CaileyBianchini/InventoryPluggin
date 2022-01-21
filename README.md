@@ -10,17 +10,17 @@
 > S             | Walks backward
 > A             | Walks Left
 > D             | Walks Right
-
+> E             | Pick up items
+> Q             | Open Inventory
+> Click Slot| Uses item in slot
 
 ## How To Implement
 
 >Setting Up Your Interactables
 
-1. Place Pickup onto your scene.
+1. make PickUp as a blueprint
 2. Put your wanted item mesh into the pickup item.
-3. In the details you can see this:
-	> screenshot details <
-   Put your wanted values 
+3. Put your wanted values in the details
 
 > Setting Up Player
 
